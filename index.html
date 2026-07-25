@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Tijara — Créez votre boutique en ligne en 5 minutes</title>
 <meta name="description" content="Tijara vous permet de lancer gratuitement votre boutique en ligne en Algérie : commandes en paiement à la livraison, gestion du stock, tableau de bord vendeur.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3D53F5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Tijara">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -362,6 +370,9 @@ html[data-lang="ar"] [data-rtl]{direction:rtl;text-align:right}
       <button class="btn btn-ghost langbtn" onclick="toggleLang()">
         <span class="i18n-fr">🇩🇿 الدارجة</span>
         <span class="i18n-ar">🇫🇷 Français</span>
+      </button>
+      <button id="pwaInstallBtn" class="btn btn-ghost" style="display:none" onclick="tijaraInstall()">
+        <span class="i18n-fr">📲 Installer l'app</span><span class="i18n-ar">📲 نصّب التطبيق</span>
       </button>
       <a class="btn btn-ghost" href="?page=vendeur"><span class="i18n-fr">Se connecter</span><span class="i18n-ar">دخول</span></a>
       <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique</span><span class="i18n-ar">دير الحانوت ديالك</span></a>
@@ -2205,6 +2216,30 @@ window.adminClear = async (slug, btn) => {
 })();
 
 }
+</script>
+<script>
+/* ===== PWA : enregistrement du service worker + invite d'installation ===== */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+// Bouton "Installer l'app" qui apparaît quand le navigateur le permet
+let tijaraInstallEvent = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  tijaraInstallEvent = e;
+  const btn = document.getElementById('pwaInstallBtn');
+  if (btn) btn.style.display = 'inline-flex';
+});
+window.tijaraInstall = async () => {
+  if (!tijaraInstallEvent) return;
+  tijaraInstallEvent.prompt();
+  await tijaraInstallEvent.userChoice;
+  tijaraInstallEvent = null;
+  const btn = document.getElementById('pwaInstallBtn');
+  if (btn) btn.style.display = 'none';
+};
 </script>
 </body>
 </html>
