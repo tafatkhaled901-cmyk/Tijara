@@ -78,62 +78,188 @@ html[data-mode="admin"] #view-admin{display:block}
 #view-admin .a-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:10px;flex-wrap:wrap}
 #view-vendor{background:#F5F5F1}
 
-/* Landing */
+/* ===== Landing ===== */
+html[data-mode="landing"]{scroll-behavior:smooth}
 #view-landing{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
-#view-landing .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-#view-landing .btn{display:inline-block;font-family:var(--disp);font-weight:700;text-decoration:none;border-radius:999px;padding:14px 26px;font-size:16px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease}
+#view-landing .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+#view-landing section{padding:72px 0;scroll-margin-top:78px}
+
+/* Boutons */
+#view-landing .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--disp);font-weight:700;text-decoration:none;border-radius:999px;padding:15px 28px;font-size:16px;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s ease,background .18s ease,border-color .18s ease}
 #view-landing .btn:hover{transform:translateY(-2px)}
-#view-landing .btn-primary{background:var(--majorelle);color:#fff;box-shadow:0 6px 18px rgba(61,83,245,.28)}
-#view-landing .btn-primary:hover{background:var(--majorelle-deep)}
-#view-landing .btn-ghost{border-color:var(--orange);color:#fff;background:var(--orange)}
+#view-landing .btn-primary{background:var(--majorelle);color:#fff;box-shadow:0 10px 26px rgba(61,83,245,.3)}
+#view-landing .btn-primary:hover{background:var(--majorelle-deep);box-shadow:0 14px 32px rgba(61,83,245,.4)}
+#view-landing .btn-soft{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:0 2px 10px rgba(20,24,31,.05)}
+#view-landing .btn-soft:hover{border-color:var(--majorelle);color:var(--majorelle-deep)}
+#view-landing .btn-ghost{border-color:var(--orange);color:#fff;background:var(--orange);box-shadow:0 8px 22px rgba(249,115,22,.26)}
 #view-landing .btn-ghost:hover{background:var(--orange-hover);border-color:var(--orange-hover)}
 #view-landing .btn-ghost:active{background:var(--orange-active);border-color:var(--orange-active)}
-#view-landing .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--majorelle);display:block;margin-bottom:12px}
-#view-landing header{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-#view-landing .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-#view-landing .logo{font-family:var(--disp);font-weight:700;font-size:21px;text-decoration:none}
+
+/* En-tête */
+#view-landing .trialband{background:var(--majorelle);color:#fff;text-align:center;font-size:13px;font-weight:600;padding:10px 16px}
+#view-landing header{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.84);backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);border-bottom:1px solid var(--line)}
+#view-landing .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:10px}
+/* unicode-bidi:plaintext — sans ça, le point de « Tijara. » saute devant le mot en arabe */
+#view-landing .logo{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.02em;text-decoration:none;unicode-bidi:plaintext}
 #view-landing .logo span{color:var(--majorelle)}
-#view-landing .nav a.btn{padding:9px 18px;font-size:14px}
-#view-landing .nav-links{display:flex;gap:10px;align-items:center}
-#view-landing .hero{padding:60px 0 44px;text-align:center}
-#view-landing h1{font-family:var(--disp);font-weight:700;font-size:clamp(30px,6vw,48px);line-height:1.12;letter-spacing:-.02em;max-width:16em;margin:0 auto}
+#view-landing .nav-links{display:flex;gap:8px;align-items:center}
+#view-landing .nav .btn{padding:10px 18px;font-size:14px}
+#view-landing .langbtn{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;padding:9px 15px}
+@media(max-width:640px){#view-landing .hide-sm{display:none}}
+
+/* Héros */
+#view-landing .hero{position:relative;padding:64px 0 40px}
+#view-landing .hero::before{content:"";position:absolute;top:-140px;left:0;right:0;height:560px;z-index:0;pointer-events:none;
+  background:radial-gradient(600px 320px at 15% 10%,rgba(61,83,245,.15),transparent 64%),
+             radial-gradient(520px 300px at 88% 2%,rgba(242,169,30,.15),transparent 60%),
+             radial-gradient(460px 280px at 60% 70%,rgba(15,163,107,.09),transparent 66%)}
+#view-landing .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:920px){#view-landing .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center;justify-items:center}}
+#view-landing .eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--majorelle-deep);background:rgba(61,83,245,.08);border:1px solid rgba(61,83,245,.22);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+#view-landing h1{font-family:var(--disp);font-weight:700;font-size:clamp(33px,5vw,53px);line-height:1.07;letter-spacing:-.03em;margin:0;text-wrap:balance}
 #view-landing h1 em{font-style:normal;color:var(--majorelle)}
-#view-landing .hero p.lede{margin:18px auto 0;font-size:17px;color:var(--muted);max-width:32em}
-#view-landing .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-#view-landing .hero-note{margin-top:12px;font-size:13px;color:var(--muted)}
-#view-landing section{padding:56px 0}
-#view-landing h2{font-family:var(--disp);font-weight:700;font-size:clamp(24px,4vw,32px);letter-spacing:-.02em;text-align:center}
-#view-landing .sub{color:var(--muted);text-align:center;margin:12px auto 0;max-width:32em}
-#view-landing .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-@media(max-width:820px){#view-landing .grid3{grid-template-columns:1fr 1fr}}
+#view-landing .hero p.lede{margin:20px 0 0;font-size:17.5px;color:var(--muted);max-width:34em}
+@media(max-width:920px){#view-landing .hero p.lede{margin-inline:auto}}
+#view-landing .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+@media(max-width:920px){#view-landing .hero-ctas{justify-content:center}}
+#view-landing .hero-note{margin-top:14px;font-size:13.5px;color:var(--muted)}
+#view-landing .hero-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:32px;padding-top:26px;border-top:1px solid var(--line)}
+@media(max-width:920px){#view-landing .hero-stats{justify-content:center}}
+#view-landing .hs b{display:block;font-family:var(--disp);font-weight:700;font-size:25px;line-height:1.15;letter-spacing:-.02em;direction:ltr;unicode-bidi:isolate}
+#view-landing .hs span{font-size:12.5px;color:var(--muted)}
+
+/* Maquette téléphone : une commande qui arrive dans le tableau de bord */
+#view-landing .phone-stage{position:relative;display:flex;justify-content:center;padding:14px 0}
+#view-landing .phone{position:relative;z-index:1;width:280px;max-width:100%;border-radius:40px;background:var(--ink);padding:10px;box-shadow:0 34px 70px rgba(20,24,31,.26),0 6px 16px rgba(20,24,31,.12);transform:rotate(-2deg)}
+#view-landing .phone::after{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:78px;height:5px;border-radius:99px;background:rgba(255,255,255,.28)}
+#view-landing .screen{background:#fff;border-radius:31px;overflow:hidden;font-size:12.5px;line-height:1.45}
+#view-landing .sc-top{background:var(--ink);color:#fff;padding:30px 16px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+#view-landing .sc-top b{font-family:var(--disp);font-size:15px;unicode-bidi:plaintext}
+#view-landing .sc-top b i{font-style:normal;color:#8B9BFF}
+#view-landing .sc-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:#7FE0B4}
+#view-landing .sc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(15,163,107,.6);animation:tjPulse 2.2s infinite}
+@keyframes tjPulse{0%{box-shadow:0 0 0 0 rgba(15,163,107,.55)}70%{box-shadow:0 0 0 7px rgba(15,163,107,0)}100%{box-shadow:0 0 0 0 rgba(15,163,107,0)}}
+#view-landing .sc-body{padding:14px;background:#F5F5F1;display:flex;flex-direction:column;gap:10px}
+#view-landing .sc-kpis{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+#view-landing .sc-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 11px}
+#view-landing .sc-kpi .k-lbl{display:block;font-size:10.5px;color:var(--muted)}
+#view-landing .sc-kpi b{display:block;font-family:var(--disp);font-size:17px;letter-spacing:-.02em;direction:ltr;unicode-bidi:isolate}
+#view-landing .sc-order{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;display:flex;gap:10px;align-items:flex-start}
+#view-landing .sc-order.fresh{border-color:var(--majorelle);box-shadow:0 6px 18px rgba(61,83,245,.16);animation:tjDrop .7s cubic-bezier(.2,.9,.25,1) .35s both}
+@keyframes tjDrop{from{opacity:0;transform:translateY(-14px) scale(.97)}to{opacity:1;transform:none}}
+#view-landing .sc-av{flex:0 0 30px;height:30px;border-radius:9px;background:#EEF0FE;color:var(--majorelle-deep);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:12px}
+#view-landing .sc-meta{min-width:0;flex:1}
+#view-landing .sc-meta b{display:block;font-size:12.5px;unicode-bidi:plaintext}
+#view-landing .sc-meta .o-sub{display:block;font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-landing .sc-amt{font-family:var(--mono);font-size:12px;font-weight:600;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
+#view-landing .sc-pill{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:999px;margin-top:3px}
+#view-landing .p-new{background:#EEF0FE;color:var(--majorelle-deep)}
+#view-landing .p-ok{background:rgba(15,163,107,.13);color:#0B7C51}
+#view-landing .sc-cod{display:flex;align-items:center;gap:7px;background:rgba(15,163,107,.09);border:1px solid rgba(15,163,107,.26);border-radius:11px;padding:9px 11px;font-size:11px;color:#0B7C51;font-weight:600}
+#view-landing .float-tag{position:absolute;z-index:2;background:#fff;border:1px solid var(--line);border-radius:13px;padding:9px 13px;font-size:12.5px;font-weight:600;white-space:nowrap;box-shadow:0 14px 34px rgba(20,24,31,.14);display:flex;align-items:center;gap:7px}
+#view-landing .ft-a{top:7%;inset-inline-start:0;color:var(--majorelle-deep);animation:tjFloat 5s ease-in-out infinite}
+#view-landing .ft-b{bottom:10%;inset-inline-end:0;color:#0B7C51;animation:tjFloat 5s ease-in-out 1.4s infinite}
+@media(max-width:520px){#view-landing .float-tag{font-size:11.5px;padding:7px 11px}}
+@keyframes tjFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-width:420px){#view-landing .float-tag{display:none}}
+
+/* Titres de section */
+#view-landing h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3.6vw,35px);letter-spacing:-.025em;text-align:center;text-wrap:balance}
+#view-landing .sub{color:var(--muted);text-align:center;margin:14px auto 0;max-width:34em}
+
+/* Fonctionnalités */
+#view-landing .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+@media(max-width:860px){#view-landing .grid3{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){#view-landing .grid3{grid-template-columns:1fr}}
-#view-landing .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
-#view-landing .card .ico{font-size:26px;margin-bottom:10px}
-#view-landing .card h3{font-family:var(--disp);font-size:17px;margin-bottom:6px}
+#view-landing .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+#view-landing .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,24,31,.08);border-color:#D6D3CA}
+#view-landing .card .ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:15px;background:#EEF0FE}
+#view-landing .card .ico.t-saffron{background:#FDF1DC}
+#view-landing .card .ico.t-mint{background:rgba(15,163,107,.12)}
+#view-landing .card h3{font-family:var(--disp);font-size:17.5px;margin-bottom:7px}
 #view-landing .card p{color:var(--muted);font-size:14.5px}
-#view-landing .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;counter-reset:step}
-@media(max-width:820px){#view-landing .steps{grid-template-columns:1fr}}
-#view-landing .step{text-align:center}
-#view-landing .step .num{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;margin:0 auto 12px}
-#view-landing .step h3{font-family:var(--disp);font-size:16px;margin-bottom:6px}
-#view-landing .step p{color:var(--muted);font-size:14px}
-#view-landing .cta-band{background:var(--ink);color:#fff;text-align:center;border-radius:20px}
+
+/* Les 3 étapes (une vraie séquence : la numérotation porte l'information) */
+#view-landing .steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+#view-landing .steps::before{content:"";position:absolute;top:22px;left:16%;right:16%;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 7px,transparent 7px 14px)}
+@media(max-width:860px){#view-landing .steps{grid-template-columns:1fr;gap:30px}#view-landing .steps::before{display:none}}
+#view-landing .step{position:relative;text-align:center}
+#view-landing .step .num{position:relative;z-index:1;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:17px;margin:0 auto 14px;box-shadow:0 0 0 6px var(--paper)}
+#view-landing .step h3{font-family:var(--disp);font-size:17px;margin-bottom:7px}
+#view-landing .step p{color:var(--muted);font-size:14.5px;max-width:24em;margin-inline:auto}
+
+/* Comparatif */
+#view-landing .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+@media(max-width:720px){#view-landing .compare{grid-template-columns:1fr}}
+#view-landing .cmp{border-radius:18px;padding:24px 24px 20px;border:1px solid var(--line);background:#fff}
+#view-landing .cmp.good{border-color:rgba(61,83,245,.35);background:linear-gradient(180deg,#F7F8FF,#fff 55%);box-shadow:0 14px 38px rgba(61,83,245,.1)}
+#view-landing .cmp h3{font-family:var(--disp);font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+#view-landing .cmp ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+#view-landing .cmp li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--muted)}
+#view-landing .cmp li b{color:var(--ink);font-weight:600}
+#view-landing .cmp .mk{flex:0 0 20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
+#view-landing .cmp.bad .mk{background:#FDEBEA;color:var(--red)}
+#view-landing .cmp.good .mk{background:rgba(15,163,107,.14);color:#0B7C51}
+
+/* Tarif */
+#view-landing .pricebox{max-width:460px;margin:40px auto 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px 28px;text-align:center;box-shadow:0 20px 50px rgba(20,24,31,.07)}
+#view-landing .price-tag{font-family:var(--disp);font-weight:700;font-size:50px;line-height:1;color:var(--majorelle-deep);margin:6px 0 4px;direction:ltr;unicode-bidi:isolate;letter-spacing:-.03em}
+#view-landing .price-tag .cur{font-size:23px;margin-inline-start:5px}
+#view-landing .price-tag .per{font-size:16px;color:var(--muted);font-weight:500;margin-inline-start:6px}
+#view-landing .price-list{list-style:none;text-align:start;margin:22px 0 24px;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+#view-landing .price-list li{display:flex;gap:10px;align-items:flex-start}
+#view-landing .price-list .mk{flex:0 0 20px;height:20px;border-radius:50%;background:rgba(15,163,107,.14);color:#0B7C51;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
+
+/* FAQ */
+#view-landing .faq{max-width:720px;margin:40px auto 0;display:flex;flex-direction:column;gap:10px}
+#view-landing .faq details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+#view-landing .faq details[open]{border-color:rgba(61,83,245,.4);box-shadow:0 10px 28px rgba(61,83,245,.08)}
+#view-landing .faq summary{cursor:pointer;list-style:none;padding:16px 20px;font-family:var(--disp);font-weight:700;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+#view-landing .faq summary::-webkit-details-marker{display:none}
+#view-landing .faq summary::after{content:"+";font-size:21px;font-weight:400;color:var(--majorelle);flex:0 0 auto;transition:transform .2s ease}
+#view-landing .faq details[open] summary::after{transform:rotate(45deg)}
+#view-landing .faq .ans{padding:0 20px 18px;color:var(--muted);font-size:14.5px}
+
+/* Bandeau final */
+#view-landing .cta-band{position:relative;overflow:hidden;background:var(--ink);color:#fff;text-align:center;border-radius:24px;padding:56px 24px}
+#view-landing .cta-band::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(460px 240px at 22% 0%,rgba(61,83,245,.5),transparent 62%),radial-gradient(400px 220px at 82% 106%,rgba(242,169,30,.28),transparent 62%)}
+#view-landing .cta-band>*{position:relative;z-index:1}
 #view-landing .cta-band h2{color:#fff}
-#view-landing .cta-band p{color:#B9BEC9;margin:12px auto 0;max-width:28em}
-#view-landing .cta-band .hero-ctas{margin-top:24px}
-#view-landing footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:13px;color:var(--muted)}
+#view-landing .cta-band p{color:#B9BEC9;margin:14px auto 0;max-width:30em}
+#view-landing .cta-band .hero-ctas{margin-top:26px;justify-content:center}
+
+/* Barre d'action collante (mobile) */
+#view-landing .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;align-items:center;padding:11px 14px calc(11px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(20,24,31,.08)}
+#view-landing .stickybar .sb-txt{flex:1;min-width:0;font-size:12.5px;line-height:1.3;color:var(--muted)}
+#view-landing .stickybar .sb-txt b{display:block;color:var(--ink);font-family:var(--disp);font-size:14px}
+#view-landing .stickybar .btn{padding:12px 20px;font-size:14.5px}
+@media(max-width:720px){#view-landing .stickybar{display:flex}#view-landing footer{padding-bottom:96px}}
+
+#view-landing footer{border-top:1px solid var(--line);padding:36px 0;text-align:center;font-size:13px;color:var(--muted)}
 #view-landing footer a{color:var(--majorelle);font-weight:600;text-decoration:none}
+#view-landing footer a:hover{text-decoration:underline}
+
+/* Apparition au défilement */
+#view-landing .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+#view-landing .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #view-landing .reveal{opacity:1;transform:none;transition:none}
+  #view-landing .sc-order.fresh,#view-landing .ft-a,#view-landing .ft-b,#view-landing .sc-live::before{animation:none}
+  #view-landing .btn:hover,#view-landing .card:hover{transform:none}
+}
+
 .i18n-ar{font-family:"Segoe UI",Tahoma,Arial,sans-serif}
 html[data-lang="fr"] .i18n-ar{display:none}
 html[data-lang="ar"] .i18n-fr{display:none}
+/* Filet de sécurité : certains blocs de l'accueil sont ciblés via #view-landing,
+   ce qui l'emporterait sur les deux règles ci-dessus et afficherait les deux
+   langues en même temps. On rétablit la priorité du masquage. */
+html[data-lang="fr"] #view-landing .i18n-ar,
+html[data-lang="ar"] #view-landing .i18n-fr{display:none}
 html[data-lang="ar"] [data-rtl]{direction:rtl;text-align:right}
 #view-landing[data-lang="ar"]{direction:rtl}
-#view-landing[data-lang="ar"] .eyebrow{letter-spacing:0;text-transform:none}
-#view-landing .langbtn{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;padding:8px 14px}
-#view-landing .trialband{background:#EEF0FE;color:var(--majorelle-deep);text-align:center;font-size:13px;font-weight:600;padding:9px 16px}
-#view-landing .price-tag{font-family:var(--disp);font-weight:700;font-size:44px;color:var(--majorelle-deep);margin:18px 0;direction:ltr;unicode-bidi:isolate}
-#view-landing .price-tag .cur{font-size:22px;margin-inline-start:4px}
-#view-landing .price-tag .per{font-size:16px;color:var(--muted);font-weight:500;margin-inline-start:6px}
+#view-landing[data-lang="ar"] .eyebrow{letter-spacing:0;text-transform:none;font-family:var(--body)}
+#view-landing[data-lang="ar"] .phone{transform:rotate(2deg)}
 
 /* Order */
 #view-order{font-family:var(--body);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6}
@@ -365,115 +491,245 @@ html[data-lang="ar"] [data-rtl]{direction:rtl;text-align:right}
 
 <div id="view-landing" data-lang="fr">
 <div class="trialband">
-  <span class="i18n-fr">🎁 6 jours d'essai gratuit, sans engagement</span>
-  <span class="i18n-ar">🎁 6 أيام تجربة مجانية، بلا التزام</span>
+  <span class="i18n-fr">🎁 6 jours d'essai gratuit — aucune carte bancaire</span>
+  <span class="i18n-ar">🎁 6 أيام تجربة مجانية — بلا كارت بنكية</span>
 </div>
 <header>
   <div class="wrap nav">
     <a class="logo" href="./">Tijara<span>.</span></a>
     <div class="nav-links">
-      <button class="btn btn-ghost langbtn" onclick="toggleLang()">
+      <button class="btn btn-soft langbtn" onclick="toggleLang()">
         <span class="i18n-fr">🇩🇿 الدارجة</span>
         <span class="i18n-ar">🇫🇷 Français</span>
       </button>
-      <a class="btn btn-ghost" href="?page=vendeur"><span class="i18n-fr">Se connecter</span><span class="i18n-ar">دخول</span></a>
+      <a class="btn btn-soft hide-sm" href="?page=vendeur"><span class="i18n-fr">Se connecter</span><span class="i18n-ar">دخول</span></a>
       <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique</span><span class="i18n-ar">دير الحانوت ديالك</span></a>
     </div>
   </div>
 </header>
 
-<div class="wrap hero">
-  <span class="eyebrow"><span class="i18n-fr">Plateforme e-commerce 100% algérienne</span><span class="i18n-ar">منصة تجارة إلكترونية 100% جزائرية</span></span>
-  <h1>
-    <span class="i18n-fr">Vendez en ligne <em>sans rien avancer</em>, en 5 minutes</span>
-    <span class="i18n-ar">بيع أونلاين <em>بلا ما تسبق فلوس</em>، في 5 دقايق</span>
-  </h1>
-  <p class="lede">
-    <span class="i18n-fr">Tijara vous donne une boutique en ligne, un tableau de bord de commandes et le paiement à la livraison — gratuitement, sans connaissances techniques.</span>
-    <span class="i18n-ar">Tijara يعطيك حانوت أونلاين، تابلو للطلبات، والخلاص عند التوصيل — بلاش، بلا ما تحتاج تعرف في الإعلام الآلي.</span>
-  </p>
-  <div class="hero-ctas">
-    <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique gratuitement</span><span class="i18n-ar">دير الحانوت ديالك بلاش</span></a>
-    <a class="btn btn-ghost" href="#comment-ca-marche"><span class="i18n-fr">Voir comment ça marche</span><span class="i18n-ar">شوف كيفاش تخدم</span></a>
-    <button id="pwaInstallBtn" class="btn btn-ghost" onclick="tijaraInstall()">
-      <span class="i18n-fr">📲 Installer l'application</span><span class="i18n-ar">📲 نصّب التطبيق</span>
-    </button>
+<div class="hero">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="i18n-fr">Plateforme e-commerce 100% algérienne</span><span class="i18n-ar">منصة تجارة إلكترونية 100% جزائرية</span></span>
+      <h1>
+        <span class="i18n-fr">Vendez en ligne <em>sans rien avancer</em>, en 5 minutes</span>
+        <span class="i18n-ar">بيع أونلاين <em>بلا ما تسبق فلوس</em>، في 5 دقايق</span>
+      </h1>
+      <p class="lede">
+        <span class="i18n-fr">Une boutique à votre nom, les commandes qui arrivent dans votre téléphone, et le paiement à la livraison partout en Algérie. Sans site web, sans carte bancaire, sans connaissances techniques.</span>
+        <span class="i18n-ar">حانوت باسمك، الطلبات توصلك في التيليفون، والخلاص عند التوصيل في الجزائر كاملة. بلا سيت ويب، بلا كارت بنكية، وبلا ما تحتاج تعرف في الإعلام الآلي.</span>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique gratuitement</span><span class="i18n-ar">دير الحانوت ديالك بلاش</span></a>
+        <a class="btn btn-soft" href="#comment-ca-marche"><span class="i18n-fr">Voir comment ça marche</span><span class="i18n-ar">شوف كيفاش تخدم</span></a>
+        <button id="pwaInstallBtn" class="btn btn-ghost" onclick="tijaraInstall()">
+          <span class="i18n-fr">📲 Installer l'application</span><span class="i18n-ar">📲 نصّب التطبيق</span>
+        </button>
+      </div>
+      <p class="hero-note">
+        <span class="i18n-fr">Boutique en ligne immédiatement · Vous gardez 100 % de vos ventes</span>
+        <span class="i18n-ar">الحانوت يخدم فورا · تحبس 100% من المبيعات ديالك</span>
+      </p>
+      <div class="hero-stats">
+        <div class="hs"><b>58</b><span class="i18n-fr">wilayas couvertes</span><span class="i18n-ar">ولاية مغطاة</span></div>
+        <div class="hs"><b>0 %</b><span class="i18n-fr">de commission sur vos ventes</span><span class="i18n-ar">عمولة على المبيعات</span></div>
+        <div class="hs"><b><span class="i18n-fr">6 j</span><span class="i18n-ar">6 أيام</span></b><span class="i18n-fr">d'essai gratuit</span><span class="i18n-ar">تجربة مجانية</span></div>
+      </div>
+    </div>
+
+    <!-- Aperçu du tableau de bord vendeur : une commande qui arrive -->
+    <div class="phone-stage" aria-hidden="true">
+      <div class="float-tag ft-a">🔔 <span class="i18n-fr">Nouvelle commande</span><span class="i18n-ar">طلبية جديدة</span></div>
+      <div class="float-tag ft-b">💵 <span class="i18n-fr">Payée à la livraison</span><span class="i18n-ar">تخلّص عند التوصيل</span></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="sc-top">
+            <b>Tijara<i>.</i></b>
+            <span class="sc-live"><span class="i18n-fr">en direct</span><span class="i18n-ar">مباشر</span></span>
+          </div>
+          <div class="sc-body">
+            <div class="sc-kpis">
+              <div class="sc-kpi"><span class="k-lbl"><span class="i18n-fr">Commandes</span><span class="i18n-ar">الطلبات</span></span><b>12</b></div>
+              <div class="sc-kpi"><span class="k-lbl"><span class="i18n-fr">Chiffre confirmé</span><span class="i18n-ar">المداخيل المؤكدة</span></span><b>34 500 DA</b></div>
+            </div>
+            <div class="sc-order fresh">
+              <div class="sc-av">AB</div>
+              <div class="sc-meta">
+                <b>Amine B.</b>
+                <span class="o-sub">16 Alger · <span class="i18n-fr">Montre connectée</span><span class="i18n-ar">ساعة ذكية</span></span>
+                <span class="sc-pill p-new"><span class="i18n-fr">Nouvelle</span><span class="i18n-ar">جديدة</span></span>
+              </div>
+              <div class="sc-amt">6 900 DA</div>
+            </div>
+            <div class="sc-order">
+              <div class="sc-av">SK</div>
+              <div class="sc-meta">
+                <b>Sara K.</b>
+                <span class="o-sub">31 Oran · <span class="i18n-fr">Casque sans fil</span><span class="i18n-ar">سماعة بلا فيل</span></span>
+                <span class="sc-pill p-ok"><span class="i18n-fr">Confirmée</span><span class="i18n-ar">مؤكدة</span></span>
+              </div>
+              <div class="sc-amt">4 200 DA</div>
+            </div>
+            <div class="sc-cod">💵 <span class="i18n-fr">Le client paie à la réception</span><span class="i18n-ar">الحريف يخلّص كي توصلو</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <p class="hero-note">
-    <span class="i18n-fr">Aucune carte bancaire requise · Boutique en ligne immédiatement</span>
-    <span class="i18n-ar">ما تحتاجش كارت بنكية · الحانوت يخدم فورا</span>
-  </p>
 </div>
 
 <section id="fonctionnalites">
   <div class="wrap">
-    <h2><span class="i18n-fr">Tout pour vendre, rien à installer</span><span class="i18n-ar">كل شي باش تبيع، والو ما تركب</span></h2>
-    <p class="sub">
+    <h2 class="reveal"><span class="i18n-fr">Tout pour vendre, rien à installer</span><span class="i18n-ar">كل شي باش تبيع، والو ما تركب</span></h2>
+    <p class="sub reveal">
       <span class="i18n-fr">Chaque boutique Tijara inclut ces outils dès la création, sans configuration.</span>
       <span class="i18n-ar">كل حانوت في Tijara فيه هاد الأدوات من أول ما تخلقو، بلا ما تحتاج تنظمها.</span>
     </p>
     <div class="grid3">
-      <div class="card"><div class="ico">🔗</div>
+      <div class="card reveal"><div class="ico">🔗</div>
         <h3><span class="i18n-fr">Votre lien de boutique</span><span class="i18n-ar">الرابط ديال الحانوت ديالك</span></h3>
         <p><span class="i18n-fr">Une adresse à vous, à partager sur Facebook, Instagram, TikTok ou WhatsApp.</span><span class="i18n-ar">رابط خاص بيك، تقدر تشاركه في فيسبوك، انستغرام، تيكتوك ولا واتساب.</span></p></div>
-      <div class="card"><div class="ico">📦</div>
+      <div class="card reveal"><div class="ico">📦</div>
         <h3><span class="i18n-fr">Commandes en direct</span><span class="i18n-ar">الطلبات لحظة بلحظة</span></h3>
         <p><span class="i18n-fr">Chaque commande client arrive instantanément dans votre tableau de bord.</span><span class="i18n-ar">كل طلبية ديال الحريف توصل فورا للتابلو ديالك.</span></p></div>
-      <div class="card"><div class="ico">💵</div>
+      <div class="card reveal"><div class="ico t-mint">💵</div>
         <h3><span class="i18n-fr">Paiement à la livraison</span><span class="i18n-ar">الخلاص عند التوصيل</span></h3>
         <p><span class="i18n-fr">Vos clients commandent sans carte bancaire ; ils paient à la réception.</span><span class="i18n-ar">الحرفاء يطلبو بلا كارت بنكية؛ يخلصو منين توصلهم السلعة.</span></p></div>
-      <div class="card"><div class="ico">🗺️</div>
+      <div class="card reveal"><div class="ico t-saffron">🗺️</div>
         <h3><span class="i18n-fr">Les 58 wilayas</span><span class="i18n-ar">58 ولاية</span></h3>
         <p><span class="i18n-fr">Le formulaire de commande couvre toute l'Algérie, avec numéros locaux validés.</span><span class="i18n-ar">استمارة الطلب تغطي الجزائر كاملة، بأرقام هاتف متحققة.</span></p></div>
-      <div class="card"><div class="ico">🗃️</div>
+      <div class="card reveal"><div class="ico t-saffron">🗃️</div>
         <h3><span class="i18n-fr">Gestion du stock</span><span class="i18n-ar">تسيير الستوك</span></h3>
         <p><span class="i18n-fr">Suivez vos quantités et recevez une alerte avant la rupture.</span><span class="i18n-ar">تابع الكميات ديالك وتوصلك تنبيه قبل ما يخلص الستوك.</span></p></div>
-      <div class="card"><div class="ico">🔒</div>
-        <h3><span class="i18n-fr">Boutique privée</span><span class="i18n-ar">حانوت خاص بيك</span></h3>
-        <p><span class="i18n-fr">Vous seul voyez vos commandes et vos produits — jamais les autres vendeurs.</span><span class="i18n-ar">غير نتا لي تشوف الطلبات والمنتجات ديالك — حتى بائع آخر ما يشوفهم.</span></p></div>
+      <div class="card reveal"><div class="ico">📣</div>
+        <h3><span class="i18n-fr">Vos pubs, prêtes à publier</span><span class="i18n-ar">الإشهارات ديالك، واجدة للنشر</span></h3>
+        <p><span class="i18n-fr">Tijara génère le visuel et le texte de votre annonce — vous partagez en un clic.</span><span class="i18n-ar">Tijara يصنع لك الصورة والنص تاع الإشهار — تشاركهم بضغطة وحدة.</span></p></div>
     </div>
   </div>
 </section>
 
 <section id="comment-ca-marche" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <h2><span class="i18n-fr">Trois étapes, cinq minutes</span><span class="i18n-ar">تلاتة خطوات، 5 دقايق</span></h2>
+    <h2 class="reveal"><span class="i18n-fr">Trois étapes, cinq minutes</span><span class="i18n-ar">تلاتة خطوات، 5 دقايق</span></h2>
+    <p class="sub reveal">
+      <span class="i18n-fr">De l'inscription à votre première commande, sans aucune étape technique.</span>
+      <span class="i18n-ar">من التسجيل حتى لأول طلبية، بلا حتى خطوة تقنية.</span>
+    </p>
     <div class="steps">
-      <div class="step"><div class="num">1</div>
+      <div class="step reveal"><div class="num">1</div>
         <h3><span class="i18n-fr">Créez votre compte</span><span class="i18n-ar">اصنع الحساب ديالك</span></h3>
         <p><span class="i18n-fr">Nom de votre boutique, email, mot de passe. C'est tout.</span><span class="i18n-ar">سمية الحانوت، الإيميل، كلمة السر. هذا كامل.</span></p></div>
-      <div class="step"><div class="num">2</div>
+      <div class="step reveal"><div class="num">2</div>
         <h3><span class="i18n-fr">Recevez votre lien</span><span class="i18n-ar">خود الرابط ديالك</span></h3>
         <p><span class="i18n-fr">Votre adresse de boutique est prête immédiatement, à partager partout.</span><span class="i18n-ar">رابط الحانوت ديالك يولي واجد فورا، تقدر تشاركه فين ما بغيت.</span></p></div>
-      <div class="step"><div class="num">3</div>
+      <div class="step reveal"><div class="num">3</div>
         <h3><span class="i18n-fr">Vendez</span><span class="i18n-ar">بيع</span></h3>
         <p><span class="i18n-fr">Les commandes arrivent dans votre tableau de bord ; vous confirmez et expédiez.</span><span class="i18n-ar">الطلبات توصل للتابلو ديالك؛ تأكد وترسل السلعة.</span></p></div>
     </div>
   </div>
 </section>
 
-<section style="background:var(--paper)">
-  <div class="wrap" style="text-align:center;max-width:520px">
-    <h2><span class="i18n-fr">Un tarif simple, après votre essai</span><span class="i18n-ar">تسعيرة بسيطة، من بعد التجربة</span></h2>
-    <div class="price-tag">1 500 <span class="cur">DA</span><span class="per"><span class="i18n-fr">/mois</span><span class="i18n-ar">/الشهر</span></span></div>
-    <p class="sub">
-      <span class="i18n-fr">6 jours d'essai gratuit, sans engagement. Ensuite, seulement 1 500 DA/mois pour garder votre boutique active.</span>
-      <span class="i18n-ar">6 أيام تجربة مجانية، بلا التزام. من بعد، غير 1500 دج في الشهر باش يبقى الحانوت خدام.</span>
+<section>
+  <div class="wrap">
+    <h2 class="reveal"><span class="i18n-fr">Vendre sur les réseaux, en mieux</span><span class="i18n-ar">البيع في الريزو، بصح مليح</span></h2>
+    <p class="sub reveal">
+      <span class="i18n-fr">Ce qui change quand vos commandes ne passent plus par les commentaires et les messages privés.</span>
+      <span class="i18n-ar">واش يتبدّل كي الطلبات ما تبقاش تعدّي في الكومنتار والمسّاجات.</span>
     </p>
+    <div class="compare">
+      <div class="cmp bad reveal">
+        <h3>😵‍💫 <span class="i18n-fr">Sans Tijara</span><span class="i18n-ar">بلا Tijara</span></h3>
+        <ul>
+          <li><span class="mk">✕</span><span class="i18n-fr">Les commandes se perdent entre les commentaires et les messages privés.</span><span class="i18n-ar">الطلبات تضيع بين الكومنتار والمسّاجات.</span></li>
+          <li><span class="mk">✕</span><span class="i18n-fr">Le nom, le numéro et la wilaya sont notés à la main dans un carnet.</span><span class="i18n-ar">السمية، الرقم والولاية تكتبهم باليد في كارني.</span></li>
+          <li><span class="mk">✕</span><span class="i18n-fr">Vous vendez un article déjà en rupture, et vous devez annuler.</span><span class="i18n-ar">تبيع سلعة خلاص الستوك تاعها، ولازم تلغي.</span></li>
+          <li><span class="mk">✕</span><span class="i18n-fr">Impossible de savoir combien vous avez réellement vendu ce mois-ci.</span><span class="i18n-ar">ما تقدرش تعرف شحال بعت بالصح هاد الشهر.</span></li>
+        </ul>
+      </div>
+      <div class="cmp good reveal">
+        <h3>✅ <span class="i18n-fr">Avec Tijara</span><span class="i18n-ar">مع Tijara</span></h3>
+        <ul>
+          <li><span class="mk">✓</span><b class="i18n-fr">Un lien unique</b><b class="i18n-ar">رابط واحد</b> <span class="i18n-fr">— le client remplit le formulaire, vous recevez tout.</span><span class="i18n-ar">— الحريف يعمّر الاستمارة، وتوصلك كل حاجة.</span></li>
+          <li><span class="mk">✓</span><b class="i18n-fr">Nom, téléphone, wilaya</b><b class="i18n-ar">السمية، التيليفون، الولاية</b> <span class="i18n-fr">— déjà vérifiés et rangés dans votre tableau de bord.</span><span class="i18n-ar">— متحقّق منهم ومرتّبين في التابلو ديالك.</span></li>
+          <li><span class="mk">✓</span><b class="i18n-fr">Le stock se met à jour seul</b><b class="i18n-ar">الستوك يتحدّث وحدو</b> <span class="i18n-fr">— un article épuisé ne peut plus être commandé.</span><span class="i18n-ar">— سلعة خلاصت ما تقدرش تتطلب.</span></li>
+          <li><span class="mk">✓</span><b class="i18n-fr">Votre chiffre en direct</b><b class="i18n-ar">المداخيل ديالك مباشرة</b> <span class="i18n-fr">— commandes, ventes confirmées et taux de confirmation.</span><span class="i18n-ar">— الطلبات، المبيعات المؤكدة ونسبة التأكيد.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2 class="reveal"><span class="i18n-fr">Un tarif simple, après votre essai</span><span class="i18n-ar">تسعيرة بسيطة، من بعد التجربة</span></h2>
+    <p class="sub reveal">
+      <span class="i18n-fr">Un seul prix, tout compris. Aucune commission prélevée sur vos ventes.</span>
+      <span class="i18n-ar">ثمن واحد، كلش داخل. حتى عمولة ما تتقطع من المبيعات ديالك.</span>
+    </p>
+    <div class="pricebox reveal">
+      <span class="eyebrow"><span class="i18n-fr">Abonnement boutique</span><span class="i18n-ar">اشتراك الحانوت</span></span>
+      <div class="price-tag">1 500 <span class="cur">DA</span><span class="per"><span class="i18n-fr">/mois</span><span class="i18n-ar">/الشهر</span></span></div>
+      <ul class="price-list">
+        <li><span class="mk">✓</span><span class="i18n-fr">6 jours d'essai gratuit, sans engagement</span><span class="i18n-ar">6 أيام تجربة مجانية، بلا التزام</span></li>
+        <li><span class="mk">✓</span><span class="i18n-fr">Commandes illimitées, produits illimités</span><span class="i18n-ar">طلبات بلا حدود، منتجات بلا حدود</span></li>
+        <li><span class="mk">✓</span><span class="i18n-fr">0 % de commission — vous gardez tout</span><span class="i18n-ar">0% عمولة — تحبس كلش</span></li>
+        <li><span class="mk">✓</span><span class="i18n-fr">Paiement par BaridiMob, résiliable à tout moment</span><span class="i18n-ar">الخلاص ببريدي موب، تقدر توقف وقت ما بغيت</span></li>
+      </ul>
+      <a class="btn btn-primary" style="width:100%" href="?page=vendeur&tab=signup"><span class="i18n-fr">Commencer mes 6 jours gratuits</span><span class="i18n-ar">ابدا 6 أيام بلاش</span></a>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="cta-band" style="padding:48px 24px">
+    <h2 class="reveal"><span class="i18n-fr">Les questions qu'on nous pose</span><span class="i18n-ar">الأسئلة لي يسقسيونا عليها</span></h2>
+    <div class="faq">
+      <details class="reveal">
+        <summary><span class="i18n-fr">Ai-je besoin d'une carte bancaire pour commencer ?</span><span class="i18n-ar">نحتاج كارت بنكية باش نبدا؟</span></summary>
+        <div class="ans"><span class="i18n-fr">Non. Vous créez votre compte avec un email et un mot de passe, et votre boutique est active tout de suite pour 6 jours. Le paiement se fait ensuite par virement BaridiMob, uniquement si vous décidez de continuer.</span><span class="i18n-ar">لا. تصنع الحساب بإيميل وكلمة سر، والحانوت يخدم دغيا لمدة 6 أيام. الخلاص يجي من بعد بتحويل بريدي موب، غير إذا قررت تكمّل.</span></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="i18n-fr">Comment mes clients me paient-ils ?</span><span class="i18n-ar">كيفاش يخلصوني الحرفاء؟</span></summary>
+        <div class="ans"><span class="i18n-fr">En espèces, à la livraison. Le client commande sur votre lien, vous l'appelez pour confirmer, puis vous expédiez. L'argent passe directement entre vous et votre client — Tijara ne touche jamais à vos encaissements.</span><span class="i18n-ar">كاش، عند التوصيل. الحريف يطلب من الرابط ديالك، تعيّطلو باش تأكد، ومن بعد ترسل. الفلوس تعدّي مباشرة بيناتك وبين الحريف — Tijara عمرها ما تمسّ فيهم.</span></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="i18n-fr">Faut-il savoir créer un site web ?</span><span class="i18n-ar">لازم نعرف نصنع سيت ويب؟</span></summary>
+        <div class="ans"><span class="i18n-fr">Non, il n'y a rien à installer ni à configurer. Vous ajoutez vos produits avec leur prix et leur photo, et votre page de commande est générée automatiquement.</span><span class="i18n-ar">لا، ما كاين والو تركّب ولا تنظّم. تزيد المنتجات ديالك بالثمن والتصويرة، وصفحة الطلب تتصنع أوتوماتيكيا.</span></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="i18n-fr">Les autres vendeurs peuvent-ils voir mes commandes ?</span><span class="i18n-ar">البائعين الآخرين يقدروا يشوفوا الطلبات ديالي؟</span></summary>
+        <div class="ans"><span class="i18n-fr">Jamais. Chaque boutique est isolée : vos produits, vos commandes et les coordonnées de vos clients ne sont visibles que par vous, depuis votre compte.</span><span class="i18n-ar">عمرهم. كل حانوت منفصل بوحدو : المنتجات، الطلبات ومعلومات الحرفاء ديالك ما يشوفهم غير نتا، من الحساب ديالك.</span></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="i18n-fr">Que se passe-t-il à la fin de l'essai gratuit ?</span><span class="i18n-ar">واش يصرا كي تسالي التجربة المجانية؟</span></summary>
+        <div class="ans"><span class="i18n-fr">Votre boutique se met en pause, mais rien n'est supprimé : vos produits et vos commandes sont conservés. Vous envoyez la référence de votre virement BaridiMob depuis votre tableau de bord, et la boutique se réactive dès validation.</span><span class="i18n-ar">الحانوت يتوقّف، بصح والو ما يتمسح : المنتجات والطلبات ديالك يبقاو محفوظين. تبعث مرجع التحويل تاع بريدي موب من التابلو ديالك، والحانوت يرجع يخدم كي يتأكّد.</span></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
       <h2><span class="i18n-fr">Prêt à lancer votre boutique ?</span><span class="i18n-ar">واجد باش تطلق الحانوت ديالك؟</span></h2>
-      <p><span class="i18n-fr">Rejoignez Tijara aujourd'hui — gratuit pour commencer.</span><span class="i18n-ar">انضم لـ Tijara اليوم — بلاش باش تبدا.</span></p>
+      <p><span class="i18n-fr">Créez-la maintenant et partagez votre lien aujourd'hui — 6 jours gratuits, sans carte bancaire.</span><span class="i18n-ar">اصنعو دروك وشارك الرابط ديالك اليوم — 6 أيام بلاش، بلا كارت بنكية.</span></p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique gratuitement</span><span class="i18n-ar">دير الحانوت ديالك بلاش</span></a>
       </div>
     </div>
   </div>
 </section>
+
+<div class="stickybar">
+  <div class="sb-txt">
+    <b><span class="i18n-fr">6 jours gratuits</span><span class="i18n-ar">6 أيام بلاش</span></b>
+    <span class="i18n-fr">Sans carte bancaire</span><span class="i18n-ar">بلا كارت بنكية</span>
+  </div>
+  <a class="btn btn-primary" href="?page=vendeur&tab=signup"><span class="i18n-fr">Créer ma boutique</span><span class="i18n-ar">دير الحانوت</span></a>
+</div>
 
 <footer>
   <div class="wrap">
@@ -936,6 +1192,29 @@ if (window.TIJARA_MODE === 'landing') {
   try {
     if (localStorage.getItem('tijara_lang') === 'ar') document.getElementById('view-landing').setAttribute('data-lang', 'ar');
   } catch(e) {}
+
+  // Apparition progressive des blocs au défilement.
+  // Si le navigateur est trop ancien ou si l'utilisateur préfère moins d'animations,
+  // tout s'affiche immédiatement — le contenu n'est jamais bloqué par le script.
+  (function(){
+    var blocs = document.querySelectorAll('#view-landing .reveal');
+    var animOff = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (animOff || !('IntersectionObserver' in window)){
+      blocs.forEach(function(b){ b.classList.add('in'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    blocs.forEach(function(b, i){
+      b.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms';
+      obs.observe(b);
+    });
+  })();
 }
 </script>
 <script type="module">
