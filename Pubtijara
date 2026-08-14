@@ -1,1 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tijara — Votre boutique en ligne en 5 minutes</title>
+<meta name="description" content="Répondez à 3 questions et découvrez comment vendre en ligne en Algérie, paiement à la livraison.">
+<meta name="theme-color" content="#3D53F5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#3D53F5;
+  --bleu-fonce:#1B2470;
+  --encre:#0E1330;
+  --papier:#F5F6FB;
+  --menthe:#00C48C;
+  --or:#FFB800;
+  --gris:#5E6588;
+  --trait:rgba(14,19,48,.10);
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--papier);color:var(--encre);
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-size:17px;line-height:1.5;min-height:100vh;
+  display:flex;flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+body.ar{font-family:"Noto Kufi Arabic",sans-serif}
+[lang=ar]{font-family:"Noto Kufi Arabic",sans-serif;direction:rtl}
 
+/* ---- en-tête : langue + progression ---- */
+.top{position:sticky;top:0;z-index:20;background:var(--papier);border-bottom:1px solid var(--trait)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 8px;max-width:600px;margin:0 auto}
+.marque{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;color:var(--bleu)}
+.marque i{font-style:normal;color:var(--menthe)}
+.langue{display:flex;gap:4px;background:rgba(61,83,245,.08);border-radius:99px;padding:3px}
+.langue button{border:0;background:none;font:600 13px/1 inherit;padding:7px 12px;border-radius:99px;color:var(--gris);cursor:pointer}
+.langue button[aria-pressed=true]{background:#fff;color:var(--bleu);box-shadow:0 1px 3px rgba(14,19,48,.12)}
+
+.rail{height:5px;background:rgba(61,83,245,.14)}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--bleu),var(--menthe));transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:600px;margin:0 auto;padding:26px 18px 44px}
+.etape{display:none;animation:monte .45s cubic-bezier(.2,.8,.2,1) both}
+.etape.on{display:block}
+@keyframes monte{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.compteur{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin-bottom:12px}
+h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(29px,7.5vw,40px);line-height:1.08;letter-spacing:-.025em;margin-bottom:14px}
+h1 em{font-style:normal;background:linear-gradient(180deg,transparent 62%,rgba(255,184,0,.45) 62%)}
+h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(22px,5.6vw,28px);line-height:1.18;letter-spacing:-.015em;margin-bottom:8px}
+.sous{color:var(--gris);margin-bottom:24px}
+body.ar h1,body.ar h2{font-family:"Noto Kufi Arabic",sans-serif;line-height:1.35}
+
+.choix{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:start;
+  background:#fff;border:1.5px solid var(--trait);border-radius:var(--r);
+  padding:16px 17px;font:inherit;color:inherit;cursor:pointer;
+  transition:border-color .15s,transform .12s,box-shadow .15s;
+}
+.opt:hover{border-color:var(--bleu);box-shadow:0 4px 14px rgba(61,83,245,.10)}
+.opt:active{transform:scale(.985)}
+.opt:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.opt .ico{font-size:26px;line-height:1;flex:none}
+.opt b{display:block;font-weight:700;font-size:16px}
+.opt small{display:block;font-size:13.5px;color:var(--gris);margin-top:2px;font-weight:400}
+
+label{display:block;font-size:13px;font-weight:700;color:var(--gris);margin-bottom:6px}
+input{width:100%;padding:15px 17px;font:inherit;background:#fff;border:1.5px solid var(--trait);border-radius:var(--r);margin-bottom:14px}
+input:focus{outline:3px solid var(--or);outline-offset:1px;border-color:var(--bleu)}
+.err{display:none;color:#D62828;font-size:14px;font-weight:500;margin-bottom:10px}
+
+.cta{
+  display:block;width:100%;padding:18px;text-align:center;text-decoration:none;
+  font:700 17px/1.2 "Plus Jakarta Sans",sans-serif;
+  background:var(--bleu);color:#fff;border:0;border-radius:var(--r);cursor:pointer;
+  box-shadow:0 6px 18px rgba(61,83,245,.32);
+}
+body.ar .cta{font-family:"Noto Kufi Arabic",sans-serif}
+.cta:active{transform:scale(.99)}
+.cta:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.cta.vert{background:var(--menthe);box-shadow:0 6px 18px rgba(0,196,140,.3)}
+.retour{background:none;border:0;color:var(--gris);font:inherit;font-size:14px;padding:12px 0;cursor:pointer;text-decoration:underline}
+.note{font-size:13.5px;color:var(--gris);text-align:center;margin-top:14px}
+
+/* preuves sur l'accroche */
+.preuves{display:flex;gap:8px;margin:22px 0 26px}
+.preuve{flex:1;background:#fff;border:1.5px solid var(--trait);border-radius:12px;padding:12px 8px;text-align:center}
+.preuve b{display:block;font-family:"Space Grotesk",sans-serif;font-size:20px;color:var(--bleu)}
+.preuve span{display:block;font-size:11.5px;color:var(--gris);line-height:1.3;margin-top:3px}
+
+/* résultat */
+.fiche{background:#fff;border:1.5px solid var(--trait);border-radius:20px;padding:24px 20px;margin-bottom:18px}
+.tag{display:inline-block;background:var(--menthe);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:99px;margin-bottom:14px}
+.fiche ul{list-style:none;margin-top:16px}
+.fiche li{position:relative;padding:12px 0 12px 30px;border-top:1px solid var(--trait);font-size:15.5px}
+[dir=rtl] .fiche li{padding:12px 30px 12px 0}
+.fiche li:before{content:"✓";position:absolute;inset-inline-start:2px;top:12px;color:var(--menthe);font-weight:700}
+.prix{display:flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--trait)}
+.prix b{font-family:"Space Grotesk",sans-serif;font-size:26px}
+.prix span{font-size:14px;color:var(--gris)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topbar">
+    <div class="marque">Tijara<i>.</i></div>
+    <div class="langue">
+      <button id="bFr" aria-pressed="true">🇫🇷 Français</button>
+      <button id="bAr" aria-pressed="false">🇩🇿 الدارجة</button>
+    </div>
+  </div>
+  <div class="rail" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="rail">
+    <div class="fill" id="fill"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- 0 · accroche -->
+<section class="etape on" data-e="0">
+  <div class="compteur" data-fr="6 jours gratuits — sans carte bancaire" data-ar="6 أيام بلاش — بلا كارت بنكية"></div>
+  <h1 data-fr="Vendez en ligne <em>sans rien avancer</em>." data-ar="بيع أونلاين <em>بلا ما تسبق فلوس</em>."></h1>
+  <p class="sous" data-fr="Trois questions, et on vous montre comment votre boutique fonctionnera. Paiement à la livraison, partout en Algérie." data-ar="تلاتة أسئلة، ونوريولك كيفاش يخدم الحانوت ديالك. الخلاص عند التوصيل، في الجزائر كاملة."></p>
+  <div class="preuves">
+    <div class="preuve"><b>58</b><span data-fr="wilayas couvertes" data-ar="ولاية مغطاة"></span></div>
+    <div class="preuve"><b>0 %</b><span data-fr="de commission" data-ar="عمولة"></span></div>
+    <div class="preuve"><b>5 min</b><span data-fr="pour démarrer" data-ar="باش تبدا"></span></div>
+  </div>
+  <button class="cta" data-suivant data-fr="Commencer" data-ar="ابدا"></button>
+  <p class="note" data-fr="Aucune carte bancaire. Aucun site web à créer." data-ar="بلا كارت بنكية. بلا ما تصنع سيت ويب."></p>
+</section>
+
+<!-- 1 -->
+<section class="etape" data-e="1">
+  <div class="compteur" data-fr="Question 1" data-ar="السؤال 1"></div>
+  <h2 data-fr="Qu'est-ce que vous vendez ?" data-ar="واش تبيع ؟"></h2>
+  <p class="sous" data-fr="Pour adapter votre page de commande." data-ar="باش نوافقو صفحة الطلب ديالك."></p>
+  <div class="choix">
+    <button class="opt" data-q="produit" data-v="mode"><span class="ico">👕</span><span><b data-fr="Vêtements, chaussures" data-ar="حوايج، صبابط"></b><small data-fr="Tailles et couleurs à gérer" data-ar="القياسات والألوان لازم تتسيّر"></small></span></button>
+    <button class="opt" data-q="produit" data-v="tech"><span class="ico">📱</span><span><b data-fr="Électronique, accessoires" data-ar="إلكترونيك، إكسسوارات"></b><small data-fr="Montres, casques, gadgets" data-ar="ساعات، سماعات، غاجيت"></small></span></button>
+    <button class="opt" data-q="produit" data-v="beaute"><span class="ico">💄</span><span><b data-fr="Beauté, parfums, soins" data-ar="زينة، عطور، عناية"></b><small data-fr="Produits à rotation rapide" data-ar="منتجات تدور بسرعة"></small></span></button>
+    <button class="opt" data-q="produit" data-v="autre"><span class="ico">📦</span><span><b data-fr="Autre chose" data-ar="حاجة أخرى"></b><small data-fr="Maison, sport, alimentaire…" data-ar="الدار، الرياضة، المأكولات…"></small></span></button>
+  </div>
+  <button class="retour" data-retour data-fr="Retour" data-ar="رجوع"></button>
+</section>
+
+<!-- 2 -->
+<section class="etape" data-e="2">
+  <div class="compteur" data-fr="Question 2" data-ar="السؤال 2"></div>
+  <h2 data-fr="Comment recevez-vous vos commandes ?" data-ar="كيفاش توصلك الطلبات ؟"></h2>
+  <p class="sous" data-fr="Aujourd'hui, avant Tijara." data-ar="اليوم، قبل Tijara."></p>
+  <div class="choix">
+    <button class="opt" data-q="canal" data-v="dm"><span class="ico">💬</span><span><b data-fr="Messages privés et commentaires" data-ar="مسّاجات وكومنتار"></b><small data-fr="Facebook, Instagram, TikTok" data-ar="فيسبوك، انستغرام، تيكتوك"></small></span></button>
+    <button class="opt" data-q="canal" data-v="whatsapp"><span class="ico">📲</span><span><b data-fr="WhatsApp" data-ar="واتساب"></b><small data-fr="Le client écrit, vous notez" data-ar="الحريف يكتب، ونتا تسجّل"></small></span></button>
+    <button class="opt" data-q="canal" data-v="boutique"><span class="ico">🏪</span><span><b data-fr="En magasin seulement" data-ar="غير في الحانوت"></b><small data-fr="Je veux commencer à vendre en ligne" data-ar="حاب نبدا نبيع أونلاين"></small></span></button>
+    <button class="opt" data-q="canal" data-v="rien"><span class="ico">🌱</span><span><b data-fr="Je débute" data-ar="راني نبدا"></b><small data-fr="Je n'ai pas encore vendu" data-ar="مازال ما بعتش"></small></span></button>
+  </div>
+  <button class="retour" data-retour data-fr="Retour" data-ar="رجوع"></button>
+</section>
+
+<!-- 3 -->
+<section class="etape" data-e="3">
+  <div class="compteur" data-fr="Question 3" data-ar="السؤال 3"></div>
+  <h2 data-fr="Qu'est-ce qui vous fait perdre le plus de temps ?" data-ar="واش لي يضيّعلك الوقت أكثر ؟"></h2>
+  <div class="choix">
+    <button class="opt" data-q="probleme" data-v="perdues"><span class="ico">😵‍💫</span><span><b data-fr="Les commandes se perdent" data-ar="الطلبات تضيع"></b><small data-fr="Entre les DM et les commentaires" data-ar="بين المسّاجات والكومنتار"></small></span></button>
+    <button class="opt" data-q="probleme" data-v="carnet"><span class="ico">📝</span><span><b data-fr="Tout noter à la main" data-ar="نكتب كلش باليد"></b><small data-fr="Nom, numéro, wilaya, sur un carnet" data-ar="السمية، الرقم، الولاية، في كارني"></small></span></button>
+    <button class="opt" data-q="probleme" data-v="stock"><span class="ico">📉</span><span><b data-fr="Vendre ce qui est en rupture" data-ar="نبيع حاجة خلاصت"></b><small data-fr="Et devoir annuler après" data-ar="ومن بعد لازم نلغي"></small></span></button>
+    <button class="opt" data-q="probleme" data-v="chiffre"><span class="ico">🤷</span><span><b data-fr="Ne pas connaître mon chiffre" data-ar="ما نعرفش شحال ربحت"></b><small data-fr="Combien j'ai vendu ce mois-ci ?" data-ar="شحال بعت هاد الشهر ؟"></small></span></button>
+  </div>
+  <button class="retour" data-retour data-fr="Retour" data-ar="رجوع"></button>
+</section>
+
+<!-- 4 · capture -->
+<section class="etape" data-e="4">
+  <div class="compteur" data-fr="Dernière étape" data-ar="آخر خطوة"></div>
+  <h2 data-fr="À quel nom sera votre boutique ?" data-ar="باش سمية يكون الحانوت ديالك ؟"></h2>
+  <p class="sous" data-fr="On prépare votre lien et on vous envoie l'accès." data-ar="نوجدو الرابط ديالك ونبعثولك الدخول."></p>
+  <p class="err" id="err"></p>
+  <label for="nom" data-fr="Nom de votre boutique" data-ar="سمية الحانوت ديالك"></label>
+  <input id="nom" type="text" placeholder="Ex. Bella Store" autocomplete="organization">
+  <label for="email" data-fr="Votre email" data-ar="الإيميل ديالك"></label>
+  <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="vous@exemple.com">
+  <button class="cta" id="envoyer" data-fr="Voir ma boutique" data-ar="شوف الحانوت ديالي"></button>
+  <p class="note" data-fr="Gratuit 6 jours. Aucune carte bancaire demandée." data-ar="بلاش 6 أيام. ما نطلبو حتى كارت بنكية."></p>
+</section>
+
+<!-- 5 · résultat -->
+<section class="etape" data-e="5">
+  <div class="fiche">
+    <span class="tag" id="tag"></span>
+    <h2 id="rTitre">—</h2>
+    <p class="sous" id="rTexte" style="margin-bottom:0">—</p>
+    <ul id="rListe"></ul>
+    <div class="prix">
+      <b>1 500 DA</b>
+      <span data-fr="/ mois — après 6 jours gratuits" data-ar="/ الشهر — بعد 6 أيام بلاش"></span>
+    </div>
+  </div>
+  <a class="cta vert" id="final" href="#" data-fr="Créer ma boutique gratuitement" data-ar="دير الحانوت ديالك بلاش"></a>
+  <p class="note" data-fr="0 % de commission. Vous gardez tout ce que vous vendez." data-ar="0% عمولة. تحبس كلش لي تبيعو."></p>
+</section>
+
+</main>
+
+<script>
+/* ================= réglages ================= */
+const CONFIG = {
+  endpoint: "https://formspree.io/f/mvkpqlew",
+  inscription: "https://tafatkhaled901-cmyk.github.io/Tijara/?page=vendeur&tab=signup"
+};
+
+/* ================= contenu des résultats ================= */
+const FICHES = {
+  mode: {
+    fr:{t:"Boutique mode",x:"Vos clientes voient les tailles disponibles avant de commander. Plus d'annulation après coup."},
+    ar:{t:"حانوت الموضة",x:"الحرفاء يشوفو القياسات المتوفرة قبل ما يطلبو. ما بقاش الإلغاء من بعد."}
+  },
+  tech: {
+    fr:{t:"Boutique high-tech",x:"Fiches produit avec photo et prix, page de vente dédiée pour vos meilleures références."},
+    ar:{t:"حانوت الإلكترونيك",x:"بطاقات المنتجات بالتصويرة والثمن، وصفحة بيع خاصة لأحسن سلعك."}
+  },
+  beaute: {
+    fr:{t:"Boutique beauté",x:"Rotation rapide, stock qui se met à jour seul, alerte avant la rupture."},
+    ar:{t:"حانوت الزينة",x:"دوران سريع، ستوك يتحدّث وحدو، وتنبيه قبل ما يخلص."}
+  },
+  autre: {
+    fr:{t:"Boutique Tijara",x:"Un lien à vous, un tableau de bord, et les commandes qui arrivent rangées."},
+    ar:{t:"حانوت Tijara",x:"رابط خاص بيك، تابلو، والطلبات توصل مرتّبة."}
+  }
+};
+const BASE = {
+  fr:["Votre lien de boutique, à partager sur Facebook, Instagram ou TikTok",
+      "Paiement à la livraison dans les 58 wilayas",
+      "Commandes illimitées, produits illimités"],
+  ar:["رابط الحانوت ديالك، تشاركو في فيسبوك، انستغرام ولا تيكتوك",
+      "الخلاص عند التوصيل في 58 ولاية",
+      "طلبات بلا حدود، منتجات بلا حدود"]
+};
+const PLUS = {
+  perdues:{fr:"Chaque commande arrive dans votre tableau de bord — plus rien ne se perd dans les DM.",ar:"كل طلبية توصل للتابلو ديالك — ما بقاش شي يضيع في المسّاجات."},
+  carnet:{fr:"Nom, téléphone et wilaya remplis par le client, déjà vérifiés.",ar:"السمية، التيليفون والولاية يعمّرهم الحريف، ومتحقّق منهم."},
+  stock:{fr:"Un article épuisé ne peut plus être commandé, le stock se met à jour seul.",ar:"سلعة خلاصت ما تقدرش تتطلب، الستوك يتحدّث وحدو."},
+  chiffre:{fr:"Votre chiffre en direct : commandes, ventes confirmées et taux de confirmation.",ar:"المداخيل مباشرة : الطلبات، المبيعات المؤكدة ونسبة التأكيد."},
+  dm:{fr:"Un seul lien remplace les allers-retours en messages privés.",ar:"رابط واحد يعوّض الرواح والجاي في المسّاجات."},
+  whatsapp:{fr:"Le formulaire fait la saisie à votre place — vous n'appelez que pour confirmer.",ar:"الاستمارة تكتب بلاصتك — غير تعيّط باش تأكد."},
+  boutique:{fr:"Vos produits en magasin deviennent une boutique en ligne, sans double saisie.",ar:"سلعك في الحانوت تولي حانوت أونلاين، بلا ما تكتبهم مرتين."},
+  rien:{fr:"Publicité générée pour vous : visuel et texte, prêts à publier.",ar:"إشهار يتصنعلك : الصورة والنص، واجدين للنشر."}
+};
+const TEXTES = {
+  errEmail:{fr:"Entrez une adresse email valide.",ar:"دخل إيميل صحيح."},
+  errNom:{fr:"Donnez un nom à votre boutique.",ar:"عطي سمية للحانوت ديالك."},
+  tag:{fr:"Votre configuration",ar:"الإعدادات ديالك"},
+  envoi:{fr:"Un instant…",ar:"شوية…"}
+};
+
+/* ================= langue ================= */
+let langue = "fr";
+function appliquerLangue(l){
+  langue = l;
+  document.documentElement.lang = l === "ar" ? "ar" : "fr";
+  document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+  document.body.classList.toggle("ar", l === "ar");
+  document.getElementById("bFr").setAttribute("aria-pressed", l === "fr");
+  document.getElementById("bAr").setAttribute("aria-pressed", l === "ar");
+  document.querySelectorAll("[data-fr]").forEach(el => {
+    el.innerHTML = el.dataset[l] || el.dataset.fr;
+  });
+  if (etape === 5) construireFiche();
+}
+document.getElementById("bFr").onclick = () => appliquerLangue("fr");
+document.getElementById("bAr").onclick = () => appliquerLangue("ar");
+
+/* ================= navigation ================= */
+const reponses = {};
+const TOTAL = 5;
+let etape = 0;
+
+function aller(n){
+  etape = n;
+  document.querySelectorAll(".etape").forEach(s =>
+    s.classList.toggle("on", +s.dataset.e === n));
+  const pct = Math.min(n / TOTAL * 100, 100);
+  document.getElementById("fill").style.width = pct + "%";
+  document.getElementById("rail").setAttribute("aria-valuenow", Math.round(pct));
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll("[data-suivant]").forEach(b => b.onclick = () => aller(etape + 1));
+document.querySelectorAll("[data-retour]").forEach(b => b.onclick = () => aller(Math.max(0, etape - 1)));
+document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+  reponses[b.dataset.q] = b.dataset.v;
+  aller(etape + 1);
+});
+
+/* ================= envoi ================= */
+document.getElementById("envoyer").onclick = async function(){
+  const nom = document.getElementById("nom").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const err = document.getElementById("err");
+
+  if (!nom){
+    err.textContent = TEXTES.errNom[langue];
+    err.style.display = "block";
+    document.getElementById("nom").focus();
+    return;
+  }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)){
+    err.textContent = TEXTES.errEmail[langue];
+    err.style.display = "block";
+    document.getElementById("email").focus();
+    return;
+  }
+  err.style.display = "none";
+
+  reponses.boutique = nom;
+  reponses.email = email;
+  reponses.langue = langue;
+
+  const texteInitial = this.textContent;
+  this.disabled = true;
+  this.textContent = TEXTES.envoi[langue];
+
+  if (CONFIG.endpoint){
+    try{
+      const r = await fetch(CONFIG.endpoint, {
+        method:"POST",
+        headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body: JSON.stringify(pourFormspree(nom, email))
+      });
+      if (!r.ok) console.warn("Formspree a refusé l'envoi", r.status);
+    }catch(e){ console.warn("Envoi impossible, on continue.", e); }
+  }
+
+  construireFiche();
+  this.disabled = false;
+  this.textContent = texteInitial;
+  aller(5);
+};
+
+/* Met les réponses en français lisible pour l'email Formspree.
+   _subject et _replyto sont des champs spéciaux reconnus par Formspree. */
+const LIBELLES = {
+  produit:{mode:"Vêtements / chaussures",tech:"Électronique / acces
