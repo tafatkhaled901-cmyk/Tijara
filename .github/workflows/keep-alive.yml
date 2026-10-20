@@ -37,7 +37,7 @@ jobs:
           #    Cette requete valide d'un coup l'API REST, la base et les droits.
           base=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 \
             -H 'apikey: sb_publishable_qBjAdqjgGM2peZCJwRJpCA_PdkdSUZp' \
-            'https://ssttdkipuizsrteybnaw.supabase.co/rest/v1/stores?select=id&limit=1') || base=000
+            'https://ssttdkipuizsrteybnaw.invalid/rest/v1/stores?select=id&limit=1') || base=000
           echo "Base de donnees : HTTP $base"
           if [ "$base" != "200" ]; then
             echo "::error::BASE HORS SERVICE (HTTP $base). Le projet Supabase est probablement en pause : aucune commande ne peut etre passee et aucun vendeur ne peut se connecter. A restaurer depuis supabase.com."
