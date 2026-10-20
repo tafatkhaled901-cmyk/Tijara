@@ -1,0 +1,32 @@
+# Les projets Supabase en offre gratuite se mettent en pause apres environ
+# 7 jours sans activite — ce qui s'est produit entre juillet et octobre 2026 et
+# a rendu Tijara inutilisable (plus aucune commande, aucune connexion vendeur).
+#
+# Ce workflow interroge l'API une fois par jour pour maintenir le projet eveille.
+# Il MAINTIENT la base en vie, il ne REVEILLE PAS une base deja en pause :
+# si le projet repasse en INACTIVE, il faut le restaurer depuis le tableau de
+# bord Supabase.
+name: Garder Supabase eveille
+
+on:
+  schedule:
+    # Tous les jours a 06h17 UTC. Minute 17 et non 0 : les taches planifiees a
+    # l'heure pile sont souvent retardees par la charge de GitHub.
+    - cron: '17 6 * * *'
+  # Permet aussi de le declencher a la main depuis l'onglet Actions.
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Interroger l'API REST Supabase
+        run: |
+          # La cle ci-dessous est la cle PUBLIABLE : elle figure deja en clair
+          # dans index.html, qui est public. Ce n'est pas un secret — la
+          # securite repose sur les politiques RLS de la base, pas sur elle.
+          code=$(curl -sS -o /dev/null -w '%{http_code}' \
+            -H 'apikey: sb_publishable_qBjAdqjgGM2peZCJwRJpCA_PdkdSUZp' \
+            'https://ssttdkipuizsrteybnaw.supabase.co/rest/v1/stores?select=id&limit=1')
+          echo "Reponse HTTP : $code"
+          test "$code" = "200"
